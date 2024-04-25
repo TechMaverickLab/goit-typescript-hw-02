@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './ImageCard.module.css'; // Переконайтеся, що шлях до файлу правильний
+import styles from './ImageCard.module.css'; 
 
 type Image = {
     urls: {

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Modal from 'react-modal';
-import styles from './ImageModal.module.css'; // Переконайтесь, що шлях до файлу правильний
+import styles from './ImageModal.module.css'; 
 
 type Image = {
     urls: {

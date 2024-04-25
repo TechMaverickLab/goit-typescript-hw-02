@@ -1,6 +1,6 @@
 import React from 'react';
-import ImageCard from '../ImageCard/ImageCard';  // Переконайтеся, що шлях до файлу правильний
-import styles from './ImageGallery.module.css'; // Переконайтеся, що шлях до файлу правильний
+import ImageCard from '../ImageCard/ImageCard';  
+import styles from './ImageGallery.module.css'; 
 
 type Image = {
     id: string;

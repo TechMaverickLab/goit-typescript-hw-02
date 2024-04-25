@@ -21,10 +21,10 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSubmit }) => {
     };
 
     return (
-        <header className={styles.header}> {/* Додано className для <header> */}
-            <form onSubmit={handleSubmit} className={styles.form}> {/* Додано className для <form> */}
+        <header className={styles.header}> 
+            <form onSubmit={handleSubmit} className={styles.form}> 
                 <input
-                    className={styles.input} // Додано className для <input>
+                    className={styles.input} 
                     type="text"
                     autoComplete="off"
                     autoFocus
@@ -32,7 +32,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSubmit }) => {
                     value={query}
                     onChange={handleChange}
                 />
-                <button className={styles.button} type="submit">Search</button> {/* Додано className для <button> */}
+                <button className={styles.button} type="submit">Search</button> 
             </form>
         </header>
     );

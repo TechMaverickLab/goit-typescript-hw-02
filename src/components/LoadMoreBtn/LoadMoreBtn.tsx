@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './LoadMoreBtn.module.css'; // Забезпечте правильний шлях до файлу CSS модуля
+import styles from './LoadMoreBtn.module.css'; 
 
 type LoadMoreBtnProps = {
     onClick: () => void;
@@ -7,7 +7,7 @@ type LoadMoreBtnProps = {
 
 const LoadMoreBtn: React.FC<LoadMoreBtnProps> = ({ onClick }) => {
     return (
-        <button onClick={onClick} className={styles.button}> {/* Додано className для застосування стилів */}
+        <button onClick={onClick} className={styles.button}> 
             Load more
         </button>
     );

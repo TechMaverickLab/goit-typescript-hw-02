@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './ErrorMessage.module.css'; // Переконайтеся, що шлях до файлу правильний
+import styles from './ErrorMessage.module.css'; 
 
 type ErrorMessageProps = {
     message: string;

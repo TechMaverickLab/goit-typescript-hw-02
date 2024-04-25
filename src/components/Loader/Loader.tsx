@@ -1,6 +1,6 @@
 import React from 'react';
 import { Circles } from 'react-loader-spinner';
-import styles from './Loader.module.css'; // Переконайтесь, що шлях до файлу правильний
+import styles from './Loader.module.css'; 
 
 const Loader: React.FC = () => {
     return (
