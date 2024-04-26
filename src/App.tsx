@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import SearchBar from './components/SearchBar/SearchBar';
 import ImageGallery from './components/ImageGallery/ImageGallery';
 import LoadMoreBtn from './components/LoadMoreBtn/LoadMoreBtn';
@@ -21,6 +21,19 @@ type Image = {
   likes: number;
 };
 
+type ImageData = {
+  id: string;
+  urls: {
+    small: string;
+    regular: string;
+  };
+  alt_description?: string;
+  user: {
+    name: string;
+  };
+  likes: number;
+};
+
 function App() {
   const [images, setImages] = useState<Image[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -28,19 +41,31 @@ function App() {
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState('');
   const [selectedImage, setSelectedImage] = useState<Image | null>(null);
+  const [totalImages, setTotalImages] = useState<number>(0);
+  const [loadedImages, setLoadedImages] = useState<number>(0);
+
+  useEffect(() => {
+    if (images.length === 0) return;
+    setLoadedImages(images.length); 
+  }, [images]);
 
   const fetchImages = async (searchQuery: string, page: number = 1) => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await axios.get(`https://api.unsplash.com/search/photos`, {
+      const response = await axios.get<{
+        total: number;
+        total_pages: number;
+        results: ImageData[];
+      }>(`https://api.unsplash.com/search/photos`, {
         params: { query: searchQuery, page, per_page: 12 },
         headers: {
-          Authorization: 'Client-ID Dg4Q5zV4616xmFVHboRdUvNXy_Jup_wWxRb9WiYhQZc' 
+          Authorization: 'Client-ID Dg4Q5zV4616xmFVHboRdUvNXy_Jup_wWxRb9WiYhQZc'
         },
       });
       setImages((prevImages) => [...prevImages, ...response.data.results]);
       setPage(page);
+      setTotalImages(response.data.total); 
     } catch (err) {
       setError('Something went wrong. Please try again later.');
       console.error(err);
@@ -72,7 +97,7 @@ function App() {
       {images.length > 0 ? (
         <>
           <ImageGallery images={images} onImageClick={handleImageClick} />
-          <LoadMoreBtn onClick={handleLoadMore} />
+          {(totalImages > loadedImages && !isLoading) && <LoadMoreBtn onClick={handleLoadMore} />}
         </>
       ) : (
         !isLoading && <p>No images found.</p>
@@ -81,5 +106,8 @@ function App() {
     </div>
   );
 }
+
+
+
 
 export default App;
